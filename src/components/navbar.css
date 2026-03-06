@@ -1,0 +1,72 @@
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 40px;
+  background:linear-gradient(135deg,#667eea,#764ba2);
+  color:white;
+}
+
+/* RIGHT SIDE TITLE */
+
+.logo{
+  letter-spacing:2px;
+  font-weight:bold;
+}
+
+/* LEFT BUTTON */
+
+.amd-btn{
+  padding:10px 22px;
+  border:none;
+  border-radius:25px;
+  background:white;
+  color:#667eea;
+  font-weight:bold;
+  cursor:pointer;
+  transition:all 0.3s ease;
+}
+
+/* HOVER ANIMATION */
+
+.amd-btn:hover{
+  transform:scale(1.1);
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+  background:#f3f3f3;
+}
+
+/* BUTTON POP ANIMATION */
+
+.amd-btn{
+  animation:pop 0.7s ease;
+}
+
+@keyframes pop{
+  0%{
+    transform:scale(0.7);
+    opacity:0;
+  }
+  100%{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+/* RESPONSIVE */
+
+@media(max-width:600px){
+
+  .navbar{
+    padding:12px 20px;
+  }
+
+  .logo{
+    font-size:18px;
+  }
+
+  .amd-btn{
+    padding:8px 18px;
+    font-size:14px;
+  }
+
+}
