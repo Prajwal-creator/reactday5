@@ -103,3 +103,44 @@
     transform:translateY(0);
   }
 }
+/* Input container */
+
+.todo-input-container{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2px;
+    width: 95%;
+    margin-top: 10px;
+    margin-left: 3%;
+}
+
+/* Input field */
+
+.todo-input{
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.todo-input:focus{
+    border-color: #2c3e50;
+}
+
+/* Add button */
+
+.add-btn{
+    padding: 10px 18px;
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.add-btn:hover{
+    background-color: #1a252f;
+}
