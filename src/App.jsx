@@ -7,6 +7,7 @@ import Signup from "./components/sinnup";
 import Loginpage from "./pages/loginpage";
 import Homes from "./pages/homes";
 import Signupp from "./pages/signupp";
+import Updates from "./pages/updatepage";
 
 function App(){
   return(
@@ -16,6 +17,7 @@ function App(){
                <Route path="/signup" element={<Signupp/>}/>
                <Route path="/" element={<Loginpage/>}/>
                <Route path="/home" element={<Homes/>}/>
+               <Route path="/update/:id" element={<Updates/>}/>
            </Routes>
       </BrowserRouter>    
     </div>
