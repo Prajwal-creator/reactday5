@@ -1,12 +1,23 @@
 import React from "react";
-import Login from "./components/Login";
 import Navbar from "./components/navbar";
+import Home from "./components/home";
+import {BrowserRouter ,Routes ,Route} from 'react-router-dom'
+import Login from "./components/Login";
 import Signup from "./components/sinnup";
+import Loginpage from "./pages/loginpage";
+import Homes from "./pages/homes";
+import Signupp from "./pages/signupp";
 
 function App(){
   return(
     <div>
-      <Navbar/>
+       <BrowserRouter>
+           <Routes>
+               <Route path="/signup" element={<Signupp/>}/>
+               <Route path="/" element={<Loginpage/>}/>
+               <Route path="/home" element={<Homes/>}/>
+           </Routes>
+      </BrowserRouter>    
     </div>
   )
 }

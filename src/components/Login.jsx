@@ -2,6 +2,7 @@ import React from "react";
 import axios from 'axios';
 import './login.css';
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 function Login() {
@@ -9,6 +10,8 @@ function Login() {
         username: "",
         password: ""
     })
+
+    const navigate = useNavigate();
 
     function Logger(e){
         setcreds({...creds,[e.target.name]: e.target.value})
@@ -24,7 +27,8 @@ function Login() {
               const token = response.data.access;
               console.log(token);
               localStorage.setItem("token",token);
-              setcreds({username: "",password: ""})
+              setcreds({username: "",password: ""});
+              navigate('/home');
         } catch (error) {
             console.log(error.response.data);
             
