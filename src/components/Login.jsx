@@ -23,6 +23,9 @@ function Login() {
     async function Loginn(e){
         e.preventDefault();
         try {
+              if(creds.username.trim()=="" || creds.password.trim()==""){
+                  alert("the username and password is not there please enter the creds...");
+              }else{
               setloading(true)
               const response = await axios.post("http://127.0.0.1:8000/login/",creds);
               console.log(response.data);
@@ -33,6 +36,7 @@ function Login() {
                 setcreds({username: "",password: ""});
                 navigate('/home');
               }
+            }
         } catch (error) {
             console.log(error.response.data);
             alert("username password is incarrect");

@@ -15,7 +15,10 @@ function Update({uid}){
 
 async function todoupdate(){
     try{
-        const response = await axios.patch("http://127.0.0.1:8000/todos/"+uid+"/update/",task,{
+        if(task.title.trim() == ""){
+            alert("please enter the text to update!")
+        }else{
+            const response = await axios.patch("http://127.0.0.1:8000/todos/"+uid+"/update/",task,{
             headers:{
                 Authorization: `Bearer ${Token}`
             }
@@ -24,6 +27,8 @@ async function todoupdate(){
         console.log(response.data);
         settask({...task,title:""});
         navigate("/home");
+        }
+        
 
     }catch(error){
         console.log(error.response.data);

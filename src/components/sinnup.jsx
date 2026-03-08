@@ -8,7 +8,10 @@ function Signup() {
         email: "",
         password: ""
     }
+    
     )
+
+    const [loading,setloading] = useState(false);
 
     function eventhandl(e){
         setcreds({...creds,[e.target.name]: e.target.value})
@@ -20,13 +23,20 @@ function Signup() {
     async function Api(e){
         e.preventDefault();
         try {
-
-        const response = await axios.post("http://127.0.0.1:8000/signup/",creds)
-        console.log(response.data)
-        setcreds({username: "" ,email: "" ,password:""})    
+          if(creds.username.trim()=="" || creds.password.trim()=="" || creds.email.trim()==""){
+            alert("the creds where empty please enter to proceed...");
+          }else{
+            setloading(true)
+            const response = await axios.post("http://127.0.0.1:8000/signup/",creds)
+            console.log(response.data)
+            setcreds({username: "" ,email: "" ,password:""})
+          }    
         } catch (error) {
-        console.log(error.response.data)     
+        console.log(error.response.data.error);
+        alert(error.response.data.error);
+             
         }
+        setloading(false)
     }
   return (
     <div className="signup-container">
@@ -42,6 +52,7 @@ function Signup() {
             className="input-field"
             value={creds.username}
             onChange={eventhandl}
+            required
           />
 
           <input
@@ -51,6 +62,7 @@ function Signup() {
             className="input-field"
             value={creds.email}
             onChange={eventhandl}
+            required
           />
 
           <input
@@ -60,9 +72,12 @@ function Signup() {
             className="input-field"
             value={creds.password}
             onChange={eventhandl}
+            required
           />
 
-          <button className="signup-btn">Sign Up</button>
+          <button className="signup-btn">{
+            loading ? <span className="spinner"></span> : "Signup"
+            }</button>
         </form>
       </div>
     </div>
