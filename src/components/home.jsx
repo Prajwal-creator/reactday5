@@ -33,7 +33,11 @@ function Home() {
   }
 
   async function Addtodo(){
-       try{
+
+        if(task.title.trim()==""){
+          alert("the input field required")
+        }else {
+          try{
         const response = await axios.post("http://127.0.0.1:8000/todos/create/",task,{
           headers:{
             Authorization: `Bearer ${Token}`
@@ -45,6 +49,7 @@ function Home() {
        }catch(error){
         console.log(error.response.data)
        }
+      }
   }
 
   useEffect(() => {
@@ -77,6 +82,7 @@ function Home() {
           placeholder="Enter a new task..."
           value={task.title}
           onChange={(e)=>settask({...task ,title:e.target.value})}
+          required
         />
 
         <button className="add-btn" onClick={()=>Addtodo()}>Add Task</button>

@@ -9,7 +9,8 @@ function Login() {
     const [creds,setcreds]=useState({
         username: "",
         password: ""
-    })
+    });
+    const [loading,setloading]=useState(false);
 
     const navigate = useNavigate();
 
@@ -22,17 +23,23 @@ function Login() {
     async function Loginn(e){
         e.preventDefault();
         try {
+              setloading(true)
               const response = await axios.post("http://127.0.0.1:8000/login/",creds);
               console.log(response.data);
               const token = response.data.access;
-              console.log(token);
-              localStorage.setItem("token",token);
-              setcreds({username: "",password: ""});
-              navigate('/home');
+              if(token){
+                console.log(token);
+                localStorage.setItem("token",token);
+                setcreds({username: "",password: ""});
+                navigate('/home');
+              }
         } catch (error) {
             console.log(error.response.data);
+            alert("username password is incarrect");
+
             
         }
+        setloading(false)
     }
   return (
     <div className="login-container">
@@ -56,7 +63,9 @@ function Login() {
             value={creds.password}
             onChange={Logger}
           />
-          <button className="login-btn">Login</button>
+          <button className="login-btn" disable={loading}>
+            {loading ? <span className="spinner"></span> : "Login" }
+          </button>
         </form>
       </div>
     </div>

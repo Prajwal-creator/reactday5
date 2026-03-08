@@ -23,7 +23,7 @@ async function todoupdate(){
         console.log("successfully working")
         console.log(response.data);
         settask({...task,title:""});
-        navigate("./home");
+        navigate("/home");
 
     }catch(error){
         console.log(error.response.data);
