@@ -32,6 +32,8 @@ function Login() {
               const token = response.data.access;
               if(token){
                 console.log(token);
+                console.log(response.data.username)
+                localStorage.setItem("user",creds.username)
                 localStorage.setItem("token",token);
                 setcreds({username: "",password: ""});
                 navigate('/home');

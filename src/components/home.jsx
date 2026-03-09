@@ -3,13 +3,16 @@ import { useState } from "react";
 import "./home.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Load from "./loading";
 
 function Home() {
   const [arr, setarr] = useState([]);
   const [task,settask] =useState({
     title:""
   })
+  const [loader,setloader] = useState(false);
   const Token = localStorage.getItem("token");
+  const user=localStorage.getItem("user");
   
 
   async function deletetodo(id) {
@@ -55,6 +58,7 @@ function Home() {
   useEffect(() => {
     async function Api() {
       try {
+        setloader(true);
         const response = await axios.get("http://127.0.0.1:8000/todos/", {
           headers: {
             Authorization: `Bearer ${Token}`,
@@ -65,6 +69,7 @@ function Home() {
       } catch (error) {
         console.log(error.response.data);
       }
+      setloader(false);
     }
     Api();
   }, []);
@@ -73,7 +78,7 @@ function Home() {
     <div className="dashboard">
       <header className="navbar">
         <h2 className="logo">Todo App</h2>
-        <span className="user">Welcome, Username</span>
+        <span className="user">Welcome, {user}</span>
       </header>
       <div className="todo-input-container">
         <input
@@ -108,6 +113,9 @@ function Home() {
           </div>
         ))}
       </div>
+      {
+        loader && <Load/>
+      }
     </div>
   );
 }
