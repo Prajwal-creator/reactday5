@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './signup.css';
 import axios from 'axios'
-
+import { useNavigate } from "react-router-dom";
 function Signup() {
     const [creds,setcreds] = useState({
         username: "",
@@ -10,6 +10,7 @@ function Signup() {
     }
     
     )
+    const navigate = useNavigate();
 
     const [loading,setloading] = useState(false);
 
@@ -30,6 +31,10 @@ function Signup() {
             const response = await axios.post("http://127.0.0.1:8000/signup/",creds)
             console.log(response.data)
             setcreds({username: "" ,email: "" ,password:""})
+            if(response.data){
+              alert("User created successfully");
+              navigate('/')
+            }
           }    
         } catch (error) {
         console.log(error.response.data.error);
